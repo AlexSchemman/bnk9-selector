@@ -1,11 +1,43 @@
 "use strict";
+var __createBinding = (this && this.__createBinding) || (Object.create ? (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    var desc = Object.getOwnPropertyDescriptor(m, k);
+    if (!desc || ("get" in desc ? !m.__esModule : desc.writable || desc.configurable)) {
+      desc = { enumerable: true, get: function() { return m[k]; } };
+    }
+    Object.defineProperty(o, k2, desc);
+}) : (function(o, m, k, k2) {
+    if (k2 === undefined) k2 = k;
+    o[k2] = m[k];
+}));
+var __setModuleDefault = (this && this.__setModuleDefault) || (Object.create ? (function(o, v) {
+    Object.defineProperty(o, "default", { enumerable: true, value: v });
+}) : function(o, v) {
+    o["default"] = v;
+});
+var __importStar = (this && this.__importStar) || (function () {
+    var ownKeys = function(o) {
+        ownKeys = Object.getOwnPropertyNames || function (o) {
+            var ar = [];
+            for (var k in o) if (Object.prototype.hasOwnProperty.call(o, k)) ar[ar.length] = k;
+            return ar;
+        };
+        return ownKeys(o);
+    };
+    return function (mod) {
+        if (mod && mod.__esModule) return mod;
+        var result = {};
+        if (mod != null) for (var k = ownKeys(mod), i = 0; i < k.length; i++) if (k[i] !== "default") __createBinding(result, mod, k[i]);
+        __setModuleDefault(result, mod);
+        return result;
+    };
+})();
 Object.defineProperty(exports, "__esModule", { value: true });
 const electron_1 = require("electron");
-const node_global_key_listener_1 = require("node-global-key-listener");
 const path = require("path");
 const electron_2 = require("electron");
 let mainWindow = null;
-const keyboard = new node_global_key_listener_1.GlobalKeyboardListener();
+const localShortcut = __importStar(require("electron-localshortcut"));
 electron_2.app.whenReady().then(() => {
     mainWindow = new electron_2.BrowserWindow({
         width: 500,
@@ -21,12 +53,11 @@ electron_2.app.whenReady().then(() => {
         },
     });
     mainWindow.loadFile(path.join(__dirname, "renderer.html"));
-    keyboard.addListener((event) => {
-        // console.log(event.name)
-        if (event.name === "F24" && event.state === "DOWN") {
-            console.log("F24 Pressed - Toggle Menu");
-            mainWindow?.webContents.send("toggle-menu");
-        }
+    console.log(localShortcut);
+    // ✅ Register F24 globally (without needing focus)
+    electron_1.globalShortcut.register("F24", () => {
+        console.log("F24 Pressed - Toggle Menu");
+        mainWindow?.webContents.send("toggle-menu");
     });
     electron_1.ipcMain.on("rotate", (_, direction) => {
         console.log(`Rotate: ${direction}`);
