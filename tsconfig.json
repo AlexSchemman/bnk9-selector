@@ -1,0 +1,17 @@
+/*https://aka.ms/tsconfig Documentation reference
+ * God I hate tsconfig
+ */
+{
+  "compilerOptions": {
+    "types": ["./src/global.d.ts"],
+    "target": "ESNext",
+    "module": "CommonJS",
+    "strict": true,
+    "skipLibCheck": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "esModuleInterop": true,
+  },
+  "include": ["src/**/*"],
+  "exclude": ["node_modules"]
+}

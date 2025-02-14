@@ -1,0 +1,83 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: transparent;
+  color: white;
+  overflow: hidden;
+}
+
+#selector {
+  position: relative;
+  width: 200px;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#dial {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transform: rotate(0deg); /* Initial rotation */
+  transition: transform 0.3s ease-out;
+}
+
+#dial-icon {
+  position: absolute;
+  width: 50px; /* Adjust size */
+  height: 50px;
+  background: white;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 24px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  z-index: 10;
+}
+
+
+.option {
+  position: absolute;
+  width: 80px;
+  height: 30px;
+  text-align: center;
+  line-height: 30px;
+  border-radius: 5px;
+  background: white;
+  color: black;
+  font-weight: bold;
+  transition: transform 0.3s, background 0.3s;
+}
+
+/* Position options in a circular pattern */
+.option:nth-child(1) {
+  transform: rotate(0deg) translateY(-90px) rotate(0deg);
+}
+.option:nth-child(2) {
+  transform: rotate(90deg) translateY(-90px) rotate(-90deg);
+}
+.option:nth-child(3) {
+  transform: rotate(180deg) translateY(-90px) rotate(-180deg);
+}
+.option:nth-child(4) {
+  transform: rotate(270deg) translateY(-90px) rotate(-270deg);
+}
+
+/* Highlight the selected option */
+.selected {
+  background: #ff4747;
+  color: white;
+  transform: scale(1.2);
+}
+
+.hidden {
+  display: none !important;
+}

@@ -1,0 +1,25 @@
+body {
+    background: transparent;
+  }
+  
+  #selector {
+    display: flex;
+    position: absolute;
+    width: 300px;
+    height: 300px;
+    border-radius: 50%;
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    font-size: 20px;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+  }
+  
+  .hidden {
+    display: none !important;
+  }
+
+  .selected {
+    background-color: red;
+  }
